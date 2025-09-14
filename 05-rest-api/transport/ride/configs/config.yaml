@@ -1,0 +1,13 @@
+server:
+  port: 8080
+  read_timeout_sec: 30
+  write_timeout_sec: 30
+
+database:
+  host: "mysql.internal"
+  port: 3306
+  user: "ride_user"
+  password: ""        # left blank, provided via DB_PASSWORD env var
+  name: "transportdb"
+  max_open_conns: 20
+  max_idle_conns: 5
