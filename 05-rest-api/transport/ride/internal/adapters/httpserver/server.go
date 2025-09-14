@@ -24,7 +24,7 @@ func Run(cfg configs.Config) error {
 	router.GET("/healthz", func(c *gin.Context) {
 		c.String(http.StatusOK, "Ok")
 	})
-	var repo ports.AssignmentRepository
+	var repo ports.AssignmentRepository //No need to initialize, as we don't have a DB yet
 	assignmentService := service.NewAssignmentService(repo)
 	// Initialize your handler that implements api.ServerInterface, injecting any services needed
 	hndlr := handler.NewAssignmentHandler(assignmentService)
