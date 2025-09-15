@@ -16,8 +16,8 @@ import (
 
 // Run initializes and starts the HTTP server based on the provided configuration.
 // It returns an error if the server fails to start.
-func Run(cfg configs.Config, repo ports.AssignmentRepository) error {
-	log.Printf("Starting server on port %d", cfg.Server.Port)
+func Run(cfg configs.ServerConfig, repo ports.AssignmentRepository) error {
+	log.Printf("Starting server on port %d", cfg.Port)
 
 	router := gin.Default()
 	// Add health endpoint
@@ -31,13 +31,13 @@ func Run(cfg configs.Config, repo ports.AssignmentRepository) error {
 	api.RegisterHandlers(router, hndlr)
 
 	server := &http.Server{
-		Addr:         fmt.Sprintf(":%d", cfg.Server.Port),
+		Addr:         fmt.Sprintf(":%d", cfg.Port),
 		Handler:      router,
-		ReadTimeout:  time.Duration(cfg.Server.ReadTimeoutSec) * time.Second,
-		WriteTimeout: time.Duration(cfg.Server.WriteTimeoutSec) * time.Second,
+		ReadTimeout:  time.Duration(cfg.ReadTimeoutSec) * time.Second,
+		WriteTimeout: time.Duration(cfg.WriteTimeoutSec) * time.Second,
 	}
 
-	log.Println("Starting server on port", cfg.Server.Port)
+	log.Println("Starting server on port", cfg.Port)
 	// The ListenAndServe call is blocking. It will only return on an
 	// unrecoverable error. We return that error to the caller (main).
 	if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {

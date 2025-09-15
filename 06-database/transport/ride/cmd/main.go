@@ -33,5 +33,5 @@ func main() {
 
 	assignmentRepo := repository.NewSQLAssignmentRepository(db)
 
-	httpserver.Run(*cfg, assignmentRepo)
+	httpserver.Run(cfg.Server, assignmentRepo)
 }
