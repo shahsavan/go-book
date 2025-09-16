@@ -1,0 +1,12 @@
+{
+  "type": "record",
+  "name": "AssignmentCreated",
+  "namespace": "transport.events",
+  "fields": [
+    { "name": "assignmentId", "type": "string" },
+    { "name": "vehicleId", "type": "string" },
+    { "name": "routeId", "type": "string" },
+    { "name": "timestamp", "type": "string" },
+    { "name": "driverId", "type": ["null", "string"], "default": null }
+  ]
+}
