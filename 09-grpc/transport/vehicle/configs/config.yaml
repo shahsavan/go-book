@@ -1,7 +1,7 @@
 server:
   port: 8080
-  read_timeout_sec: 30
-  write_timeout_sec: 30
+  connection_timeout_sec: 30
+  max_idle_timeout_sec: 30
 
 database:
   host: "mysql.internal"

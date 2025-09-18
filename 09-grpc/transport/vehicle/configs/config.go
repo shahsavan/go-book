@@ -10,9 +10,9 @@ import (
 )
 
 type ServerConfig struct {
-	Port            int `yaml:"port"`
-	ReadTimeoutSec  int `yaml:"read_timeout_sec"`
-	WriteTimeoutSec int `yaml:"write_timeout_sec"`
+	Port                 int `yaml:"port"`
+	ConnectionTimeoutSec int `yaml:"connection_timeout_sec"`
+	Max_IdleTimeoutSec   int `yaml:"max_idle_timeout_sec"`
 }
 
 type DatabaseConfig struct {
