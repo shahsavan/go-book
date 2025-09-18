@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package vehiclepb;
+option go_package = "github.com/yourname/transport/vehicle/vehiclepb;vehiclepb";
+
+service VehicleService {
+  rpc FindAvailableVehicle(FindRequest) returns (FindResponse);
+  rpc GetVehicleInfo(InfoRequest) returns (InfoResponse);
+  rpc StreamAssignments(stream AssignmentRequest) returns (stream AssignmentAck);
+}
+
+message FindRequest {
+  string routeId = 1;
+}
+
+message FindResponse {
+  string vehicleId = 1;
+  string status = 2; // available, maintenance, assigned
+}
+
+message InfoRequest {
+  string vehicleId = 1;
+}
+
+message InfoResponse {
+  string vehicleId = 1;
+  string type = 2;   // bus, tram, taxi
+  string status = 3;
+}
+
+message AssignmentRequest {
+  string assignmentId = 1;
+  string vehicleId = 2;
+  string routeId = 3;
+}
+
+message AssignmentAck {
+  string assignmentId = 1;
+  bool accepted = 2;
+}
